@@ -1,0 +1,50 @@
+.hangTitle
+{
+    height:9.7vh;
+    line-height: 9.7vh;
+    width: 96vw;
+    margin-top:3.1vh;
+    margin-left:2vw;
+    text-align: center;
+    font-size: 30px;
+    background-color: #0e5553;
+    color: white;
+    font-family: sans-serif;
+    
+}
+
+.leftPanel
+{
+    width:21.5vw;
+    float: left;
+}
+
+.centerPanel
+{
+    width:56vw;
+    float: left;
+}
+
+.rightPanel
+{
+    width:20vw;
+    float: left;
+}
+
+.findWord
+{
+    float: left;
+    padding-top: 10.4vh;
+    text-align: center;
+    width: 100%;
+}
+
+.lettersChoice
+{
+    float: left;
+    padding-left:2.7vw;
+    padding-top: 10vh;
+    text-align: center;
+    width:100%;
+
+}

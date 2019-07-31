@@ -1,0 +1,7 @@
+
+<div class="message" *ngIf="hangService.isFinished()">
+  <img class="picture" [src]="getResultPicture()" />
+  <div class="finishMessage" [ngClass]="hangService.isFail()? 'errorMessage':'successMessage'" > {{message}}</div>
+  <button class="resultButton"  (click)="hangService.startGame()">
+    <span class="buttonText">AGAIN</span></button>
+</div>

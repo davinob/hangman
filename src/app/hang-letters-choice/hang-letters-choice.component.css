@@ -1,0 +1,26 @@
+.choiceLetter{
+    font-family: cursive;
+    font-size: 25px;
+    color: #0E0F0F;
+    letter-spacing: 0;
+    font-weight: bolder;
+}
+
+.choiceLetterWrapper
+{
+    display: inline-block;
+    background-color: #f2f2f2;
+    margin-bottom: 2.2vh;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 0.9vw;
+    width: 40px;
+    height: 40px;
+}
+
+
+.selected{
+    opacity: 0.2;
+    cursor:auto;
+}

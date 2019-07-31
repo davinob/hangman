@@ -1,0 +1,53 @@
+
+
+
+.movieWords
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+.movieWord
+{
+    margin: auto;
+}
+
+.findLetter{
+    visibility: hidden;
+    font-family: Arial-BoldMT;
+    font-size: 30px;
+    color: #0E0F0F;
+    letter-spacing: 0;
+    float:left; 
+    width: 100%;
+} 
+
+.letterWrapper
+{
+    display: inline-block;
+    padding-right: 1.4vw;
+}
+
+.letterFromInit{
+    visibility: visible;
+    
+}
+
+.letterFromUser{
+    visibility: visible;
+    color: #2271BF;
+ }
+
+ .border{
+    width:3.9vw;
+    height:0.6vh;
+    background-color:#0E0F0F;
+    float:left; 
+    clear: left;
+}
+
+.borderFromUser{
+    background-color:#2271BF;
+ }

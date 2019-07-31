@@ -1,0 +1,10 @@
+  <div class="movieWords">
+  <div  *ngFor="let lettersList of hangManService.movieWordsList" class="movieWord"> 
+    <div *ngFor="let letter of lettersList" class="letterWrapper">
+    <span  [ngClass]="getLetterClass(letter)">
+      {{letter}}
+    </span>
+    <span class="border" [ngClass]="getBorderClass(letter)"></span>
+  </div>
+</div>
+</div>
