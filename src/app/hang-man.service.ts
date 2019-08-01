@@ -38,7 +38,7 @@ export class HangManService {
   readonly RUNNING_STATUS:string="running";
   readonly FAIL_STATUS:string="fail";
   readonly SUCCESS_STATUS:string="success";
-  endGameStatus$:BehaviorSubject<string>=new BehaviorSubject("runningStatus");
+  endGameStatus$:BehaviorSubject<string>=new BehaviorSubject(this.RUNNING_STATUS);
   
 
 
