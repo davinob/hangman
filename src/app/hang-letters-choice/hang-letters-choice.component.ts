@@ -27,7 +27,6 @@ export class HangLettersChoiceComponent implements OnInit {
 
     if (this.hangService.getLetterInfo(letter).tried || this.hangService.isFinished())
     {
-      console.log("letter "+letter+" already tried or game is over");
       return;
     }
 
@@ -36,7 +35,7 @@ export class HangLettersChoiceComponent implements OnInit {
 
   getSelectedClass(letter:string): string
   {
-      return (this.hangService.getLetterInfo(letter).tried)? "choiceLetter selected": "choiceLetter";
+      return (this.hangService.getLetterInfo(letter).tried)? "choiceLetterWrapper selected": "choiceLetterWrapper";
   }
 
 

@@ -1,6 +1,6 @@
 
-  <div class="choiceLetterWrapper" *ngFor="let letter of hangService.alphabet"  (click)="tryLetter(letter)">
-   <span  [ngClass]="getSelectedClass(letter)">
+  <div [ngClass]="getSelectedClass(letter)"  *ngFor="let letter of hangService.alphabet"  (click)="tryLetter(letter)">
+   <span  class="choiceLetter">
    {{letter}}
    </span>
   </div>
