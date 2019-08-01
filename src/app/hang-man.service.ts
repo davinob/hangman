@@ -34,6 +34,7 @@ export class HangManService {
    numberStepLeft:number;  
    numberLettersLeft:number;
    lettersHashMap:HashMan={};
+
   
   readonly RUNNING_STATUS:string="running";
   readonly FAIL_STATUS:string="fail";
@@ -79,14 +80,19 @@ export class HangManService {
 
   startGame()
   {
+    //for every new, reinitializing these variables:
     this.movieWordsList=new Array();
     this.numberStepLeft=this.MAX_STEPS;
     this.initLettersHashMap();
    
-
+    //choosing a movie randomly:
     let random=Math.floor(Math.random()*this.moviesList.length);
     let movieChosen:string=this.moviesList[random];
     
+    //working on movie letters, for each character seen:
+    //1. if not yet seen, adding character to a set of letters
+    //2. if not yet seen, updating the alphabet hashmap status of this character
+    //3. adding to movies words/letters list, and counting those characters
     this.numberLettersLeft=0;
     let setOfLetters:Set<string>=new Set();
     let wordLetters:Array<string>=new Array();
@@ -115,7 +121,7 @@ export class HangManService {
     }
     this.movieWordsList.push(wordLetters); 
 
-
+    //revealing only a percentage of letters: looking at the set of letters, and randomly taking from this set:
     let numToReveal:number=Math.round(setOfLetters.size * this.PERCENT_OF_LETTERS_TO_REVEAL); 
     this.numberLettersLeft-=numToReveal;
 
@@ -132,7 +138,9 @@ export class HangManService {
   }
 
 
-
+  //we reach this method only if letter not yet clicked
+  //if letter belongs to movie, revealing those letters
+  //if not, updating the count of failures
   tryLetter(letter:string)
   {
     this.lettersHashMap[letter].tried=true;
@@ -172,7 +180,7 @@ export class HangManService {
     return this.numberStepLeft==0;
   }
 
-
+  //done only once: retreaving the list of all movies titles:
   async initMoviesList() {
   let moviesCompleteList:Array<any>=await this.http.get<any>(this.MOVIES_URL).toPromise();
   this.moviesList=moviesCompleteList.map(movie=>movie.title);
