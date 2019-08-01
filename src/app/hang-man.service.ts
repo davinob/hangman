@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -20,9 +21,9 @@ export interface HashMan {
 })
 export class HangManService {
 
-   MAXSTEPS:number=6;
-   MOVIESURL:string="assets/data/movies.json";
-   PERCENTOFLETTERSTOREVEAL:number=0.25;
+   readonly MAX_STEPS:number=6;
+   readonly MOVIES_URL:string="assets/data/movies.json";
+   readonly PERCENT_OF_LETTERS_TO_REVEAL:number=0.25;
   
 
    moviesList:Array<string>;
@@ -34,7 +35,10 @@ export class HangManService {
    numberLettersLeft:number;
    lettersHashMap:HashMan={};
   
-
+  readonly RUNNING_STATUS:string="running";
+  readonly FAIL_STATUS:string="fail";
+  readonly SUCCESS_STATUS:string="success";
+  endGameStatus$:BehaviorSubject<string>=new BehaviorSubject("runningStatus");
   
 
 
@@ -76,7 +80,7 @@ export class HangManService {
   startGame()
   {
     this.movieWordsList=new Array();
-    this.numberStepLeft=this.MAXSTEPS;
+    this.numberStepLeft=this.MAX_STEPS;
     this.initLettersHashMap();
    
 
@@ -112,7 +116,7 @@ export class HangManService {
     this.movieWordsList.push(wordLetters); 
 
 
-    let numToReveal:number=Math.round(setOfLetters.size * this.PERCENTOFLETTERSTOREVEAL); 
+    let numToReveal:number=Math.round(setOfLetters.size * this.PERCENT_OF_LETTERS_TO_REVEAL); 
     this.numberLettersLeft-=numToReveal;
 
     for(let i:number=0;i<numToReveal;i++)
@@ -127,6 +131,8 @@ export class HangManService {
  
   }
 
+
+
   tryLetter(letter:string)
   {
     this.lettersHashMap[letter].tried=true;
@@ -140,6 +146,15 @@ export class HangManService {
     {
       this.numberStepLeft--;
     }
+
+    let currentStatus:string=this.endGameStatus$.value;
+    let newStatus=(!this.isFinished())?this.RUNNING_STATUS:(this.isFail())?this.FAIL_STATUS:this.SUCCESS_STATUS;
+  
+    if (currentStatus!=newStatus)
+    {
+      this.endGameStatus$.next(newStatus);
+    }
+
   }
 
   getLetterInfo(letter:string):HangLetter
@@ -159,7 +174,7 @@ export class HangManService {
 
 
   async initMoviesList() {
-  let moviesCompleteList:Array<any>=await this.http.get<any>(this.MOVIESURL).toPromise();
+  let moviesCompleteList:Array<any>=await this.http.get<any>(this.MOVIES_URL).toPromise();
   this.moviesList=moviesCompleteList.map(movie=>movie.title);
   } 
 

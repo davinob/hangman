@@ -22,7 +22,7 @@ export class HangPicComponent implements OnInit {
 
   getHangPicture():string
   {
-    let stepNum=this.hangService.MAXSTEPS-this.hangService.numberStepLeft+1;
+    let stepNum=this.hangService.MAX_STEPS-this.hangService.numberStepLeft+1;
     if (!stepNum)
       stepNum=1;
 

@@ -10,14 +10,20 @@
      padding-top: 4.9vh; 
 }
 
-.errorMessage
+.failStatus
 {
 color:#ff495e;
 }
 
-.successMessage
+.successStatus
 {
     color:#72e18e;
+}
+
+.messageWord
+{
+    display:inline-block;
+    width: 100%;
 }
 
 .resultButton

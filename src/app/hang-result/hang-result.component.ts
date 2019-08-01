@@ -10,34 +10,42 @@ export class HangResultComponent implements OnInit {
 
  
 
-  PICSFOLDER:string="assets/pics/";
-  hangSuccess:string="yes";
-  hangFailure:string="shit";
-  picSufix:string="_symbol.png";
+  readonly PICS_FOLDER:string="assets/pics/";
+  readonly hangSuccess:string="yes";
+  readonly hangFailure:string="shit";
+  readonly picSufix:string="_symbol.png";
 
-  message:string="";
+  readonly failWords:Array<string>=["SHIT!","YOU","DIED",":("];
+  readonly successWords:Array<string>=["YES","YOU","DID","IT!"];
 
-  errorMessage:string="SHIT! YOU DIED :(";
-  successMessage:string="YES YOU DID IT!";
+
+  statusClass:string="";
+  statusWords:Array<string>=null;
+  pictureURL:string="";
 
 
   constructor(public hangService:HangManService) { }
 
   ngOnInit() {
+
+    this.hangService.endGameStatus$.subscribe(gameStatus=>
+      {
+        if (gameStatus==this.hangService.FAIL_STATUS)
+        {
+          this.statusWords=this.failWords;
+          this.statusClass="failStatus";
+          this.pictureURL=this.PICS_FOLDER+this.hangFailure+this.picSufix;
+        }
+        else
+        if (gameStatus==this.hangService.SUCCESS_STATUS)
+        {
+          this.statusWords=this.successWords;
+          this.statusClass="successStatus";
+          this.pictureURL=this.PICS_FOLDER+this.hangSuccess+this.picSufix;
+        }
+      });
   }
 
 
-  getResultPicture():string
-  {
-    if (this.hangService.isFail())
-    {
-      this.message=this.errorMessage;
-      return this.PICSFOLDER+this.hangFailure+this.picSufix;
-    }
-    else 
-    {
-      this.message=this.successMessage;
-      return this.PICSFOLDER+this.hangSuccess+this.picSufix;
-    }
-  }
+
 }
