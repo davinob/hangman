@@ -23,6 +23,7 @@ export class HangManService {
 
    readonly MAX_STEPS:number=6;
    readonly MOVIES_URL:string="assets/data/movies.json";
+   readonly PICS_FOLDER:string="assets/pics/";
    readonly PERCENT_OF_LETTERS_TO_REVEAL:number=0.25;
   
 
@@ -84,6 +85,7 @@ export class HangManService {
     this.movieWordsList=new Array();
     this.numberStepLeft=this.MAX_STEPS;
     this.initLettersHashMap();
+    this.endGameStatus$.next(this.RUNNING_STATUS);
    
     //choosing a movie randomly:
     let random=Math.floor(Math.random()*this.moviesList.length);

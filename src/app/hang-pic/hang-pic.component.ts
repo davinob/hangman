@@ -9,7 +9,7 @@ import { HangManService } from '../hang-man.service';
 export class HangPicComponent implements OnInit {
 
 
-  PICSFOLDER:string="assets/pics/";
+ 
   picPrefix:string="Hangman ";
   picSufix:string=".png";
 
@@ -26,7 +26,7 @@ export class HangPicComponent implements OnInit {
     if (!stepNum)
       stepNum=1;
 
-    return this.PICSFOLDER+this.picPrefix+stepNum+this.picSufix;
+    return this.hangService.PICS_FOLDER+this.picPrefix+stepNum+this.picSufix;
   }
 
 }

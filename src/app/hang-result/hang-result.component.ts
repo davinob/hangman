@@ -10,7 +10,7 @@ export class HangResultComponent implements OnInit {
 
  
 
-  readonly PICS_FOLDER:string="assets/pics/";
+  
   readonly hangSuccess:string="yes";
   readonly hangFailure:string="shit";
   readonly picSufix:string="_symbol.png";
@@ -32,16 +32,18 @@ export class HangResultComponent implements OnInit {
       {
         if (gameStatus==this.hangService.FAIL_STATUS)
         {
+          this.pictureURL=this.hangService.PICS_FOLDER+this.hangFailure+this.picSufix;
           this.statusWords=this.failWords;
           this.statusClass="failStatus";
-          this.pictureURL=this.PICS_FOLDER+this.hangFailure+this.picSufix;
+         
         }
         else
         if (gameStatus==this.hangService.SUCCESS_STATUS)
         {
+          this.pictureURL=this.hangService.PICS_FOLDER+this.hangSuccess+this.picSufix;
           this.statusWords=this.successWords;
           this.statusClass="successStatus";
-          this.pictureURL=this.PICS_FOLDER+this.hangSuccess+this.picSufix;
+          
         }
       });
   }

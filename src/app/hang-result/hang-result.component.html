@@ -1,5 +1,5 @@
 
-<div class="message" *ngIf="hangService.isFinished()">
+<div class="message" *ngIf="this.hangService.endGameStatus$.value!=this.hangService.RUNNING_STATUS">
   <img class="picture" [src]="pictureURL" />
   
   <div [ngClass]="'finishMessage '+statusClass">
